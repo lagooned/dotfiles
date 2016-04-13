@@ -10,7 +10,7 @@ alias l='ls -CF'
 alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES)) $(($RANDOM%$COLUMNS)) $(($RANDOM%216 )); done'
 
 # brownnoise
-alias brownnoise='play -c 2 --null synth brownnoise reverb bass 6 treble -3 echos 0.8 0.9 1000 0.3 1800 0.25'
+alias brownnoise='play -v 0.2 -c 2 --null synth brownnoise reverb bass 6 treble -3 echos 0.8 0.9 1000 0.3 1800 0.25'
 
 # up multiple directories
 cd() { if [[ "$1" =~ ^\.\.+$ ]];then local a dir;a=${#1};while [ $a -ne 1 ];do dir=${dir}"../";((a--));done;builtin cd $dir && l;else builtin cd "$@" && l;fi ;}
@@ -20,3 +20,6 @@ alias c='clear'
 
 # rmr
 alias rmr='rm -rf'
+
+#alfe
+alias sl='sl -alFe'
