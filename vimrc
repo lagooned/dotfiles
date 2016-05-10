@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " insert vundle plugins 
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
@@ -29,3 +30,5 @@ set smarttab
 set expandtab
 set foldlevel=99
 set matchpairs+=<:>
+map <F4> :NERDTreeToggle<CR>
+
