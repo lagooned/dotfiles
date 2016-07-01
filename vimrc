@@ -8,6 +8,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 " insert vundle plugins 
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -31,4 +34,15 @@ set expandtab
 set foldlevel=99
 set matchpairs+=<:>
 map <F4> :NERDTreeToggle<CR>
+set relativenumber
+set noswapfile
+set nobackup
+set ignorecase
+set smartcase
+nnoremap <Space> @q
 
+" global powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2
