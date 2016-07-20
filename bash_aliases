@@ -21,5 +21,5 @@ alias c='clear'
 # rmr
 alias rmr='rm -rf'
 
-#alfe
+# alfe
 alias sl='sl -alFe'
