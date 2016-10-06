@@ -53,6 +53,9 @@
 
 (require 'powerline-evil)
 
+(require 'helm-config)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
