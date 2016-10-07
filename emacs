@@ -44,10 +44,6 @@
 (require 'evil)
     (evil-mode 1)
 
-(require 'linum)
-    (global-linum-mode 1)
-    (setq linum-format " %d ")
-
 (require 'powerline)
     (powerline-evil-vim-color-theme)
 
@@ -55,6 +51,14 @@
 
 (require 'helm-config)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+; relative line numbers
+(require 'linum)
+(require 'linum-relative)
+    (linum-on)
+    (linum-relative 1)
+    (linum-relative-in-helm-p)
+    (setq linum-relative-format " %3s   ")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
