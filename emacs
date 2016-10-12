@@ -1,10 +1,23 @@
-;; jared emacs.el
+;; 
+;; jared emacs init
+;;
+;; NOTE - use this emacs25 build for osx:
+;; github.com/railwaycat/homebrew-emacsmacport 
+;;
+;; Packages to install:
+;;   * evil
+;;   * helm
+;;   * spaceline
+;;   * linum-relative
+;;   * monokai
+;;   * org-mode
+;; 
+
 ; melpa 
 (require 'package)
 (add-to-list 'package-archives
      '("melpa" . "https://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
     (package-initialize)
 
@@ -13,6 +26,9 @@
 
 ; no splash
 (setq inhibit-splash-screen t)
+
+; no scrollbars
+(scroll-bar-mode -1)
 
 ; enable upcase region
 (put 'upcase-region 'disabled nil)
@@ -54,13 +70,33 @@
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ; evil mode
+(setq evil-want-C-u-scroll t)
 (require 'evil)
     (evil-mode 1)
-    (setq evil-want-C-u-scroll t)
 
 ; relative line numbers
 (require 'linum-relative)
     (linum-relative-mode)
     (global-linum-mode)
-    (setq linum-relative-format "%3s  ")
+    (setq linum-relative-format "%3s ")
     (setq linum-relative-current-symbol "")
+
+; spaceline
+(require 'spaceline-config)
+    (spaceline-emacs-theme)
+
+; theme 
+(load-theme 'monokai t)
+
+; toolbar
+(custom-set-variables
+ '(package-selected-packages (quote (spaceline monokai-theme linum-relative helm evil)))
+ '(tool-bar-mode nil))
+
+; font
+(custom-set-faces
+ '(default ((t (:height 130 :family "Source Code Pro"))))
+)
+
+; default window size
+(when window-system (set-frame-size (selected-frame) 150 37))
