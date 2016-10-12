@@ -1,25 +1,35 @@
 ;; 
-;; jared emacs init
+;;  JARED EMACS INIT
 ;;
-;; NOTE - use this emacs25 build for osx:
-;; github.com/railwaycat/homebrew-emacsmacport 
+;;  NOTE: use this emacs25 build for osx:
+;;  github.com/railwaycat/homebrew-emacsmacport 
 ;;
-;; Packages to install:
-;;   * evil
-;;   * helm
-;;   * spaceline
-;;   * linum-relative
-;;   * monokai
-;;   * org-mode
+;;  Packages to install:
+;;      * evil
+;;      * helm
+;;      * spaceline
+;;      * linum-relative
+;;      * monokai
+;;      * org-mode
 ;; 
 
-; melpa 
-(require 'package)
-(add-to-list 'package-archives
-     '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-    (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-    (package-initialize)
+; font
+(when (eq system-type 'darwin)
+    ;; default Latin font
+    (set-face-attribute 'default nil :family "Source Code Pro")
+
+    ;; default font size (point * 10)
+    (set-face-attribute 'default nil :height 130)
+
+    ;; not sure if this needs to be here lol
+    (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+)
+
+; no menu bar
+(tool-bar-mode -1)
+
+; default window size
+(when window-system (set-frame-size (selected-frame) 150 37))
 
 ; no tabs
 (setq-default indent-tabs-mode nil)
@@ -65,6 +75,14 @@
         (delete-other-windows))))
 ; (global-set-key (kbd "C-c z") 'toggle-maximize-buffer)
 
+; melpa 
+(require 'package)
+(add-to-list 'package-archives
+     '("melpa" . "https://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
+    (package-initialize)
+
 ; helm 
 (require 'helm)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -83,20 +101,8 @@
 
 ; spaceline
 (require 'spaceline-config)
-    (spaceline-emacs-theme)
+    (spaceline-emacs-theme) 
 
-; theme 
+; monokai
 (load-theme 'monokai t)
 
-; toolbar
-(custom-set-variables
- '(package-selected-packages (quote (spaceline monokai-theme linum-relative helm evil)))
- '(tool-bar-mode nil))
-
-; font
-(custom-set-faces
- '(default ((t (:height 130 :family "Source Code Pro"))))
-)
-
-; default window size
-(when window-system (set-frame-size (selected-frame) 150 37))
