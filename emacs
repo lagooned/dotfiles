@@ -9,27 +9,37 @@
 ;;      * helm
 ;;      * spaceline
 ;;      * linum-relative
-;;      * monokai
-;;      * org-mode
+;;      * monokai-theme
+;;      * org-bullets
+;;      * magit
+;;      * evil-magit
+;;      * babel
+;;      * dired+ 
+;;      * org-pdfview
+;;      * web-mode
+;;      * php-mode
 ;; 
 
-; font
 (when (eq system-type 'darwin)
-    ;; default Latin font
+    ; default Latin font
     (set-face-attribute 'default nil :family "Source Code Pro")
 
-    ;; default font size (point * 10)
+    ; default font size (point * 10)
     (set-face-attribute 'default nil :height 130)
 
-    ;; not sure if this needs to be here lol
+    ; not sure if this needs to be here lol
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+    ; auto complete on opt tab
+    (global-set-key (kbd "<A-tab>") 'minibuffer-complete)
 )
 
 ; no menu bar
 (tool-bar-mode -1)
 
-; default window size
-(when window-system (set-frame-size (selected-frame) 150 37))
+; default window 
+; (when window-system (set-frame-size (selected-frame) 150 37))
+(setq default-frame-alist '((top . 20) (left . 20)))
 
 ; no tabs
 (setq-default indent-tabs-mode nil)
@@ -42,6 +52,7 @@
 
 ; enable upcase region
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ; bury scratch buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
@@ -73,7 +84,10 @@
     (progn
         (window-configuration-to-register '_)
         (delete-other-windows))))
-; (global-set-key (kbd "C-c z") 'toggle-maximize-buffer)
+    ; (global-set-key (kbd "C-c z") 'toggle-maximize-buffer)
+
+; org-mode code in code blocks
+(setq org-src-fontify-natively t)
 
 ; melpa 
 (require 'package)
@@ -83,15 +97,6 @@
     (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
     (package-initialize)
 
-; helm 
-(require 'helm)
-    (global-set-key (kbd "C-x C-f") 'helm-find-files)
-
-; evil mode
-(setq evil-want-C-u-scroll t)
-(require 'evil)
-    (evil-mode 1)
-
 ; relative line numbers
 (require 'linum-relative)
     (linum-relative-mode)
@@ -99,10 +104,57 @@
     (setq linum-relative-format "%3s ")
     (setq linum-relative-current-symbol "")
 
+; helm 
+(require 'helm) 
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "C-x b") 'helm-buffers-list)
+
+
+; evil mode
+(setq evil-want-C-u-scroll t)
+(require 'evil)
+(require 'evil-commentary)
+    (evil-mode 1)
+    (evil-commentary-mode)
+
 ; spaceline
 (require 'spaceline-config)
-    (spaceline-emacs-theme) 
+    (spaceline-spacemacs-theme) 
+
+; org bullets
+(require 'org-bullets)
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ; monokai
+(setq monokai-height-plus-1 1.0
+      monokai-height-plus-2 1.0
+      monokai-height-plus-3 1.0
+      monokai-height-plus-4 1.0
+      monokai-height-minus-1 1.0)
+(setq monokai-use-variable-pitch nil)
 (load-theme 'monokai t)
 
+; google this minor mode
+(require 'google-this)
+    (google-this-mode 1)
+    (global-set-key (kbd "C-x g") 'google-this-mode-submap)
+
+; desktop mode
+(require 'desktop)
+    (desktop-save-mode 1)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (## web-mode pcomplete-extension babel google-this org-pdfview evil-magit git magit org-bullets helm-fuzzy-find helm-c-moccur evil-commentary php-mode spaceline monokai-theme linum-relative helm evil))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
