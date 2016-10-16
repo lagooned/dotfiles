@@ -13,3 +13,9 @@ export PATH=/usr/local/php5/bin:$PATH
 # term colors
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# homestead
+export PATH=~/.composer/vendor/bin:$PATH
+
+# editor
+export EDITOR=vi
