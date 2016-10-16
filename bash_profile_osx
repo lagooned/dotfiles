@@ -1,0 +1,15 @@
+# ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# load bashrc
+source .bashrc
+
+# load aliases
+source .bash_aliases
+
+# php 7
+export PATH=/usr/local/php5/bin:$PATH
+
+# term colors
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
