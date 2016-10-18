@@ -149,7 +149,7 @@
 (setq auto-indent-untabify-on-visit-file t)
 (setq auto-indent-assign-indent-level 4)
 (setq auto-indent-mode-untabify-on-yank-or-paste t)
-(auto-indent-mode t)
+(auto-indent-global-mode t)
 
 ;; helm-projectile
 ;; (setq helm-projectile-fuzzy-match nil)
