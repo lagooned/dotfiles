@@ -1,11 +1,13 @@
-;; 
+;;
 ;;  JARED EMACS INIT
 ;;
 ;;  NOTE: use this emacs25 build for osx:
-;;  github.com/railwaycat/homebrew-emacsmacport 
+;;  github.com/railwaycat/homebrew-emacsmacport
 ;;
 ;;  Packages to install:
 ;;      * evil
+;;      * evil-surround
+;;      * evil-commentary
 ;;      * helm
 ;;      * spaceline
 ;;      * linum-relative
@@ -14,7 +16,7 @@
 ;;      * magit
 ;;      * evil-magit
 ;;      * babel
-;;      * dired+ 
+;;      * dired+
 ;;      * org-pdfview
 ;;      * web-mode
 ;;      * php-mode
@@ -28,20 +30,20 @@
 (when (eq system-type 'darwin)
     ;; default Latin font
     (set-face-attribute 'default nil :family "Source Code Pro")
-    
+
     ;; default font size (point * 10)
     (set-face-attribute 'default nil :height 130)
-    
+
     ;; not sure if this needs to be here lol
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-    
+
     ;; auto complete on opt tab
     (global-set-key (kbd "<A-tab>") 'minibuffer-complete))
 
 ;; no menu bar
 (tool-bar-mode -1)
 
-;; default window 
+;; default window
 ;; (when window-system (set-frame-size (selected-frame) 150 37))
 (setq default-frame-alist '((top . 20) (left . 20)))
 
@@ -69,11 +71,11 @@
             ad-do-it)))
 
 ;; maximize current buffer
-(defun toggle-maximize-buffer () 
+(defun toggle-maximize-buffer ()
     "Maximize buffer"
     (interactive)
     (if (= 1 (length (window-list)))
-            (jump-to-register '_) 
+            (jump-to-register '_)
         (progn
             (window-configuration-to-register '_)
             (delete-other-windows))))
@@ -82,7 +84,7 @@
 ;; org-mode code in code blocks
 (setq org-src-fontify-natively t)
 
-;; melpa 
+;; melpa
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -97,8 +99,8 @@
 (setq linum-relative-format "%3s ")
 (setq linum-relative-current-symbol "")
 
-;; helm 
-(require 'helm) 
+;; helm
+(require 'helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -112,7 +114,7 @@
 
 ;; spaceline
 (require 'spaceline-config)
-(spaceline-spacemacs-theme) 
+(spaceline-spacemacs-theme)
 
 ;; org bullets
 (require 'org-bullets)
@@ -144,7 +146,7 @@
 (require 'dired-x)
 
 ;; auto-indent-mode
-(require 'auto-indent-mode)                                      
+(require 'auto-indent-mode)
 (setq auto-indent-on-visit-file t)
 (setq auto-indent-untabify-on-visit-file t)
 (setq auto-indent-assign-indent-level 4)
