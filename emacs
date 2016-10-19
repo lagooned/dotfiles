@@ -23,6 +23,7 @@
 ;;      * projectile
 ;;      * helm-projectile
 ;;      * yasnippet
+;;      * auto-complete
 ;;
 
 (when (eq system-type 'darwin)
@@ -32,11 +33,11 @@
     ;; default font size (point * 10)
     (set-face-attribute 'default nil :height 130)
     
-    ;; not sure if this needs to be here lol
-    (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+    ;; suppress warnings at startup
+    (setq warning-minimum-level :emergency)
     
-    ;; auto complete on opt tab
-    (global-set-key (kbd "<A-tab>") 'minibuffer-complete))
+    ;; not sure if this needs to be here lol
+    (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
 
 ;; no menu bar
 (tool-bar-mode -1)
@@ -68,17 +69,6 @@
                 (bury-buffer)
             ad-do-it)))
 
-;; maximize current buffer
-(defun toggle-maximize-buffer () 
-    "Maximize buffer"
-    (interactive)
-    (if (= 1 (length (window-list)))
-            (jump-to-register '_) 
-        (progn
-            (window-configuration-to-register '_)
-            (delete-other-windows))))
-;; (global-set-key (kbd "C-c z") 'toggle-maximize-buffer)
-
 ;; org-mode code in code blocks
 (setq org-src-fontify-natively t)
 
@@ -98,7 +88,7 @@
 (setq linum-relative-current-symbol "")
 
 ;; helm 
-(require 'helm) 
+;; (require 'helm) 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -151,10 +141,21 @@
 (setq auto-indent-mode-untabify-on-yank-or-paste t)
 (auto-indent-global-mode t)
 
+;; auto complete
+(require 'auto-complete)
+(global-auto-complete-mode)
+
 ;; helm-projectile
-;; (setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
 (helm-projectile-on)
+
+;; yasnippit
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; projectile
+(require 'projectile)
+(projectile-global-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -163,7 +164,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (helm-projectile projectile auto-indent-mode yaml-mode dired+ ## web-mode pcomplete-extension babel google-this org-pdfview evil-magit git magit org-bullets helm-fuzzy-find helm-c-moccur evil-commentary php-mode spaceline monokai-theme linum-relative helm evil))))
+    (groovy-mode auto-complete helm-projectile projectile auto-indent-mode yaml-mode dired+ ## web-mode pcomplete-extension babel google-this org-pdfview evil-magit git magit org-bullets helm-fuzzy-find helm-c-moccur evil-commentary php-mode spaceline monokai-theme linum-relative helm evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
