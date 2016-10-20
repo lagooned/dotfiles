@@ -1,50 +1,45 @@
-;; 
+;;
 ;;  JARED EMACS INIT
 ;;
-;;  NOTE: use this emacs25 build for osx:
-;;  github.com/railwaycat/homebrew-emacsmacport 
-;;
-;;  Packages to install:
-;;      * evil
-;;      * helm
-;;      * spaceline
-;;      * linum-relative
-;;      * monokai-theme
-;;      * org-bullets
-;;      * magit
-;;      * evil-magit
-;;      * babel
-;;      * dired+ 
-;;      * org-pdfview
-;;      * web-mode
-;;      * php-mode
-;;      * yaml-mode
-;;      * auto-indent-mode
-;;      * projectile
-;;      * helm-projectile
-;;      * yasnippet
-;;      * auto-complete
+;;  * evil
+;;  * evil-surround
+;;  * evil-commentary
+;;  * helm
+;;  * spaceline
+;;  * linum-relative
+;;  * monokai-theme
+;;  * org-bullets
+;;  * magit
+;;  * evil-magit
+;;  * babel
+;;  * dired+
+;;  * org-pdfview
+;;  * web-mode
+;;  * php-mode
+;;  * yaml-mode
+;;  * auto-indent-mode
+;;  * projectile
+;;  * helm-projectile
+;;  * yasnippet
+;;  * auto-complete
+;;  * lorem-ipsum
+;;  * engine-mode
 ;;
 
 (when (eq system-type 'darwin)
+    ;;
+    ;; NOTE: use this emacs25 build for osx:
+    ;; github.com/railwaycat/homebrew-emacsmacport
+    ;;
     ;; default Latin font
     (set-face-attribute 'default nil :family "Source Code Pro")
-    
     ;; default font size (point * 10)
     (set-face-attribute 'default nil :height 130)
-    
     ;; suppress warnings at startup
-    (setq warning-minimum-level :emergency)
-    
-    ;; not sure if this needs to be here lol
-    (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
+    (setq warning-minimum-level :emergency)) 
 
 ;; no menu bar
 (tool-bar-mode -1)
-
-;; default window 
-;; (when window-system (set-frame-size (selected-frame) 150 37))
-(setq default-frame-alist '((top . 20) (left . 20)))
 
 ;; no tabs
 (setq-default indent-tabs-mode nil)
@@ -62,6 +57,9 @@
 ;; backwards 'other window'
 (global-set-key (kbd "C-x O") 'previous-multiframe-window)
 
+;; c creates file in dired
+(define-key dired-mode-map "c" 'find-file)
+
 ;; bury scratch buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
     (let ((buffer-to-kill (ad-get-arg 0)))
@@ -72,12 +70,10 @@
 ;; org-mode code in code blocks
 (setq org-src-fontify-natively t)
 
-;; melpa 
+;; melpa
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-    (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; relative line numbers
@@ -87,8 +83,8 @@
 (setq linum-relative-format "%3s ")
 (setq linum-relative-current-symbol "")
 
-;; helm 
-;; (require 'helm) 
+;; helm
+(require 'helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -101,8 +97,9 @@
 (evil-commentary-mode)
 
 ;; spaceline
-(require 'spaceline-config)
-(spaceline-spacemacs-theme) 
+;; (setq powerline-default-separator 'slant)
+;; (require 'spaceline-config)
+;; (spaceline-spacemacs-theme)
 
 ;; org bullets
 (require 'org-bullets)
@@ -117,11 +114,6 @@
 (setq monokai-use-variable-pitch nil)
 (load-theme 'monokai t)
 
-;; google this minor mode
-(require 'google-this)
-(google-this-mode 1)
-(global-set-key (kbd "C-x g") 'google-this-mode-submap)
-
 ;; desktop mode
 (require 'desktop)
 (desktop-save-mode 1)
@@ -134,7 +126,7 @@
 (require 'dired-x)
 
 ;; auto-indent-mode
-(require 'auto-indent-mode)                                      
+(require 'auto-indent-mode)
 (setq auto-indent-on-visit-file t)
 (setq auto-indent-untabify-on-visit-file t)
 (setq auto-indent-assign-indent-level 4)
@@ -157,6 +149,15 @@
 (require 'projectile)
 (projectile-global-mode)
 
+;; lorem-ipsum
+(require 'lorem-ipsum)
+(lorem-ipsum-use-default-bindings)
+
+;; emmit-mode hooks
+(require 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode) 
+(add-hook 'web-mode-hook 'emmet-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -164,7 +165,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (groovy-mode auto-complete helm-projectile projectile auto-indent-mode yaml-mode dired+ ## web-mode pcomplete-extension babel google-this org-pdfview evil-magit git magit org-bullets helm-fuzzy-find helm-c-moccur evil-commentary php-mode spaceline monokai-theme linum-relative helm evil))))
+    (emmet-mode engine-mode lorem-ipsum try groovy-mode auto-complete helm-projectile projectile auto-indent-mode yaml-mode dired+ ## web-mode pcomplete-extension babel org-pdfview evil-magit git magit org-bullets helm-fuzzy-find helm-c-moccur evil-commentary php-mode spaceline monokai-theme linum-relative helm evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
