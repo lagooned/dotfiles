@@ -57,8 +57,6 @@
 ;; backwards 'other window'
 (global-set-key (kbd "C-x O") 'previous-multiframe-window)
 
-;; c creates file in dired
-(define-key dired-mode-map "c" 'find-file)
 
 ;; bury scratch buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
@@ -121,6 +119,7 @@
 ;; reuse dired+ buffers
 (require 'dired+)
 (diredp-toggle-find-file-reuse-dir 1)
+(define-key dired-mode-map "c" 'find-file)
 
 ;; dired-jump
 (require 'dired-x)
@@ -130,7 +129,7 @@
 (setq auto-indent-on-visit-file t)
 (setq auto-indent-untabify-on-visit-file t)
 (setq auto-indent-assign-indent-level 4)
-(setq auto-indent-mode-untabify-on-yank-or-paste t)
+;; (setq auto-indent-mode-untabify-on-yank-or-paste t)
 (auto-indent-global-mode t)
 
 ;; auto complete
