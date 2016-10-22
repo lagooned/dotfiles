@@ -7,14 +7,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " insert vundle plugins 
-" Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
-Plugin 'johnantoni/vim-clear-search-buffer'
-" conflicts with nerdcommenter ???
-" Plugin 'othree/xml.vim'
 
 call vundle#end()
 
@@ -23,7 +18,6 @@ filetype plugin indent on
 syntax on
 set history=1000
 set undolevels=1000
-set undofile
 set ruler
 set showcmd
 set incsearch
@@ -51,8 +45,6 @@ python powerline_setup()
 python del powerline_setup
 set laststatus=2
 
-" F8 to switch buffers
-set switchbuf=usetab
-nnoremap <F8> :sbnext<CR>
-nnoremap <S-F8> :sbprevious<CR>
-set paste
+" temp directory
+set backupdir=~/.tmp,.
+set directory=~/.tmp,.
