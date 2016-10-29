@@ -104,7 +104,7 @@
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; monokai
-(setq monokai-height-plus-1 1.0
+(setq monokai-height-plus-2 1.0
       monokai-height-plus-2 1.0
       monokai-height-plus-3 1.0
       monokai-height-plus-4 1.0
