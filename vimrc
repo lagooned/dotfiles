@@ -7,10 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " insert vundle plugins 
-" Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'johnantoni/vim-clear-search-buffer'
 
@@ -21,7 +19,6 @@ filetype plugin indent on
 syntax on
 set history=1000
 set undolevels=1000
-set undofile
 set ruler
 set showcmd
 set incsearch
@@ -65,3 +62,7 @@ set directory=~/.tmp,.
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" temp directory
+set backupdir=~/.tmp,.
+set directory=~/.tmp,.
