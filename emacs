@@ -13,6 +13,7 @@
 ;;  * evil-magit
 ;;  * babel
 ;;  * dired+
+;;  * diredx
 ;;  * org-pdfview
 ;;  * web-mode
 ;;  * php-mode
@@ -56,7 +57,6 @@
 
 ;; backwards 'other window'
 (global-set-key (kbd "C-x O") 'previous-multiframe-window)
-
 
 ;; bury scratch buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
@@ -152,7 +152,7 @@
 (require 'lorem-ipsum)
 (lorem-ipsum-use-default-bindings)
 
-;; emmit-mode hooks
+;; emmit-mode 
 (require 'emmet-mode)
 (add-hook 'css-mode-hook 'emmet-mode) 
 (add-hook 'web-mode-hook 'emmet-mode)

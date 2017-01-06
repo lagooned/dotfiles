@@ -1,3 +1,6 @@
-set completion-ignore-case On
+set completion-ignore-case on
 set editing-mode vi
 set keymap vi-command
+set bell-style none
+set blink-matching-paren on
+C-l: clear-screen

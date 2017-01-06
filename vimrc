@@ -13,8 +13,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'johnantoni/vim-clear-search-buffer'
-" conflicts with nerdcommenter ???
-" Plugin 'othree/xml.vim'
 
 call vundle#end()
 
@@ -56,3 +54,14 @@ set switchbuf=usetab
 nnoremap <F8> :sbnext<CR>
 nnoremap <S-F8> :sbprevious<CR>
 set paste
+
+" temp directory
+set backupdir=~/.tmp,.
+set directory=~/.tmp,.
+
+" easy escape in insert mode
+:imap jj <Esc>
+
+" ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
