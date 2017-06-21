@@ -1,12 +1,6 @@
 !
-! maps caps lock to ctrl and left control to home and right control to end
+! maps caps lock to ctrl 
 !
 remove Lock = Caps_Lock
-remove Control = Control_L
-remove Control = Control_R
-
-keysym Control_L = Home NoSymbol Home 
-keysym Control_R = End NoSymbol End
 keysym Caps_Lock = Control_L
-
 add Control = Control_L 
