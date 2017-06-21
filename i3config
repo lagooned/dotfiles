@@ -159,7 +159,7 @@ bar {
 }
 
 # monitor setup
-exec --no-startup-id ~/.i3/layout
+exec --no-startup-id ~/.i3/monitor_layout
 
 # background
 exec --no-startup-id xsetroot -solid "#333333"
@@ -171,10 +171,10 @@ exec --no-startup-id exec ~/.dropbox-dist/dropboxd
 bindsym $mod+Control+l exec i3lock
 
 # mouse accel
-exec --no-startup-id exec xset m 1 0
+# exec --no-startup-id exec xset m 1 0
 
 # exec startup stuff
-exec --no-startup-id exec dex -a -e i3
+# exec --no-startup-id exec dex -a -e i3
 
 # remove mouse focus on mouseover
 focus_follows_mouse no
