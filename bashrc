@@ -4,11 +4,8 @@
 set -o vi
 export EDITOR=/usr/bin/vi
 
-# if not running interactively, don't do anything
-case $- in
-     *i*) ;;
-       *) return;;
-esac
+# If not running interactively, don't do anything
+[[ "$-" != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -28,6 +25,10 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
+# When changing directory small typos can be ignored by bash
+# for example, cd /vr/lgo/apaache would find /var/log/apache
+shopt -s cdspell
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -36,16 +37,27 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# Don't put duplicate lines in the history.
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm*) TERM=xterm-256color;;
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
+# default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
 # start tmux on shell start
-# if command -v tmux>/dev/null; then
-#     [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-# fi
+if command -v tmux>/dev/null; then
+    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
+# misc
+alias whence='type -a'
+alias less='less -r'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -59,15 +71,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features 
+# enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -76,6 +84,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# exec xmodmap
 if [ -f ~/.xmodmap ]; then
-	xmodmap ~/.xmodmap &>/dev/null
+    xmodmap ~/.xmodmap &>/dev/null
 fi
