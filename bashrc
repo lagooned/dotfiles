@@ -50,7 +50,7 @@ esac
 alias df='df -h'
 alias du='du -h'
 
-# start tmux on shell start
+# start tmux on shell start if it is available
 if command -v tmux>/dev/null; then
     [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
@@ -87,4 +87,9 @@ fi
 # exec xmodmap
 if [ -f ~/.xmodmap ]; then
     xmodmap ~/.xmodmap &>/dev/null
+fi
+
+# add ~/bin to path
+if [ -d ~/bin ]; then
+    export PATH=~/bin/:$PATH
 fi

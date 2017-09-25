@@ -1,16 +1,14 @@
 # some ls aliases
-alias ll='ls -alF'
-alias lh='ls -lh'
-alias lls='ls -lhSr'
-alias llh='ls -lh'
-alias la='ls -A'
 alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -lF'
+alias lla='ls -alF'
+alias lls='ls -lhSr'
+alias lh='ls -lh'
+alias llh='ls -lh'
 
 # produce some dazzling colors on the terminal. you'll probably want to run `reset` afterward.
-alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES)) $(($RANDOM%$COLUMNS)) $(($RANDOM%216 )); done'
-
-# brownnoise
-alias brownnoise='play -v 0.2 -c 2 --null synth brownnoise reverb bass 6 treble -3 echos 0.8 0.9 1000 0.3 1800 0.25'
+alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES)) $(($RANDOM%$COLUMNS)) $(($RANDOM%216 )); done;'
 
 # function cd_func
 #
