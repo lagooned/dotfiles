@@ -84,12 +84,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# exec xmodmap
-if [ -f ~/.xmodmap ]; then
-    xmodmap ~/.xmodmap &>/dev/null
-fi
-
-# add ~/bin to path
-if [ -d ~/bin ]; then
-    export PATH=~/bin/:$PATH
-fi

@@ -158,17 +158,8 @@ bar {
      }
 }
 
-# monitor setup
-exec --no-startup-id ~/.i3/monitor_layout
-
 # background
 exec --no-startup-id xsetroot -solid "#333333"
-
-# dropbox
-exec --no-startup-id exec ~/.dropbox-dist/dropboxd
-
-# lock bind
-bindsym $mod+Control+l exec i3lock
 
 # mouse accel
 # exec --no-startup-id exec xset m 1 0
