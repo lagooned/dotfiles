@@ -48,7 +48,3 @@ set directory=~/.tmp,.
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" temp directory
-set backupdir=~/.tmp,.
-set directory=~/.tmp,.
