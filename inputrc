@@ -60,4 +60,9 @@ $if Bash
   # matching paren
   # set blink-matching-paren on
 
+  # show vi mode in prompt
+  set show-mode-in-prompt on
+  set vi-ins-mode-string "+"
+  set vi-cmd-mode-string ":"
+
 $endif
