@@ -1,9 +1,5 @@
 # JARED ENGLER BASHRC
 
-# set vi edit mode
-set -o vi
-export EDITOR=/usr/bin/vi
-
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
@@ -50,11 +46,6 @@ esac
 alias df='df -h'
 alias du='du -h'
 
-# start tmux on shell start if it is available
-if command -v tmux>/dev/null; then
-    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
-
 # misc
 alias whence='type -a'
 alias less='less -r'
@@ -83,4 +74,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
