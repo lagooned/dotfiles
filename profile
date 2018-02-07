@@ -31,3 +31,8 @@ fi
 if command -v xcape>/dev/null && ! pgrep -x "xcape">/dev/null; then
     xcape -e 'Control_L=Escape;Hyper_L=Return'
 fi
+
+# Make sure we start in home unless invoked by CHERE
+if [ ! -z "${CHERE_INVOKING}" ]; then
+  unset CHERE_INVOKING
+fi

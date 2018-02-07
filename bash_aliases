@@ -86,6 +86,8 @@ cd_func ()
 
 alias cd=cd_func
 
+tmux() ( ORIG_PWD_FOR_TMUX="${PWD}" command tmux "$@"; )
+
 # start tmux on shell start if it is available
 if command -v tmux>/dev/null; then
     [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
