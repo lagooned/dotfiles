@@ -7,6 +7,17 @@ alias lls='ls -lhSr'
 alias lh='ls -lh'
 alias llh='ls -lh'
 
+if [[ $(uname -s) == Darwin ]]; then
+    alias ls='ls -G'
+    alias l='ls -CFG'
+    alias la='ls -AG'
+    alias ll='ls -lFG'
+    alias lla='ls -alFG'
+    alias lls='ls -lhSrG'
+    alias lh='ls -lhG'
+    alias llh='ls -lhG'
+fi
+
 # produce some dazzling colors on the terminal. you'll probably want to run `reset` afterward.
 alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES)) $(($RANDOM%$COLUMNS)) $(($RANDOM%216 )); done;'
 
