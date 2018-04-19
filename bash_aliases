@@ -101,7 +101,7 @@ tmux() ( ORIG_PWD_FOR_TMUX="${PWD}" command tmux "$@"; )
 
 # start tmux on shell start if it is available
 if command -v tmux>/dev/null; then
-    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+    [[ -z $TMUX ]] && tmux new-session && exit;
 fi
 
 # get current branch in git repo
