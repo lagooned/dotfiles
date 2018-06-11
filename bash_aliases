@@ -23,7 +23,7 @@ alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES))
 
 # function cd_func
 #
-# This function defines a 'cd' replacement function capable of keeping, 
+# This function defines a 'cd' replacement function capable of keeping,
 # displaying and accessing history of visited directories, up to 10 entries.
 # To use it, uncomment it, source this file and try 'cd --'.
 # acd_func 1.0.5, 10-nov-2004
@@ -49,7 +49,7 @@ cd_func ()
   if [[ "$1" =~ ^\.\.+$ ]]; then
     local a dir;
     a=${#1};
-    while [ $a -ne 1 ]; do 
+    while [ $a -ne 1 ]; do
       dir=${dir}"../";
       ((a--));
     done;
@@ -106,52 +106,52 @@ fi
 
 # get current branch in git repo
 function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}]"
-	else
-		echo ""
-	fi
+    BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+    if [ ! "${BRANCH}" == "" ]
+    then
+        STAT=`parse_git_dirty`
+        echo "[${BRANCH}${STAT}]"
+    else
+        echo ""
+    fi
 }
 
 # get current status of git repo
 function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
+    status=`git status 2>&1 | tee`
+    dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+    untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+    ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+    newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+    renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+    deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+    bits=''
+    if [ "${renamed}" == "0" ]; then
+        bits=">${bits}"
+    fi
+    if [ "${ahead}" == "0" ]; then
+        bits="*${bits}"
+    fi
+    if [ "${newfile}" == "0" ]; then
+        bits="+${bits}"
+    fi
+    if [ "${untracked}" == "0" ]; then
+        bits="?${bits}"
+    fi
+    if [ "${deleted}" == "0" ]; then
+        bits="x${bits}"
+    fi
+    if [ "${dirty}" == "0" ]; then
+        bits="!${bits}"
+    fi
+    if [ ! "${bits}" == "" ]; then
+        echo " ${bits}"
+    else
+        echo ""
+    fi
 }
 
-export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "
+export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "
 
 invert_pdf() {
     if [ -n "$1" ] || [ -n "$2" ]; then
