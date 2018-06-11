@@ -151,4 +151,12 @@ function parse_git_dirty {
 	fi
 }
 
-export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "
+export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "
+
+invert_pdf() {
+    if [ -n "$1" ] || [ -n "$2" ]; then
+        gs -o "$2" -sDEVICE=pdfwrite -c "{1 exch sub}{1 exch sub}{1 exch sub}{1 exch sub} setcolortransfer" -f "$1"
+    else
+        echo "Usage: invert_pdf input.pdf output.pdf"
+    fi
+}
