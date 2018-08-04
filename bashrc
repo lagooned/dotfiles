@@ -74,6 +74,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# exercism completion
+if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+    . ~/.config/exercism/exercism_completion.bash
+fi
+
 # Make sure we start in home unless invoked by CHERE
 if [ ! -z "${CHERE_INVOKING}" ]; then
     unset CHERE_INVOKING

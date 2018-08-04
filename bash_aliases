@@ -160,3 +160,7 @@ invert_pdf() {
         echo "Usage: invert_pdf input.pdf output.pdf"
     fi
 }
+
+highlight() {
+    grep --color -E "$1|\$"
+}
