@@ -1,3 +1,23 @@
+# ~/.bash_aliases
+
+# default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+# misc
+alias less='less -r'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  test -r "$HOME/.dircolors" && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
 # some ls aliases
 alias l='ls -CF'
 alias la='ls -A'
@@ -7,6 +27,7 @@ alias lls='ls -lhSr'
 alias lh='ls -lh'
 alias llh='ls -lh'
 
+# redefine on osx
 if [[ $(uname -s) == Darwin ]]; then
     alias ls='ls -G'
     alias l='ls -CFG'
@@ -31,78 +52,72 @@ alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES))
 #
 # jengler (lagooned/dotfiles) added ability to use multiple dots to go up
 # multiple directories
-cd_func ()
-{
-  local x2 the_new_dir adir index
-  local -i cnt
 
-  if [[ $1 ==  "--" ]]; then
-    dirs -v
-    return 0
-  fi
+cd_func () {
 
-  the_new_dir=$1
-  [[ -z $1 ]] && the_new_dir=$HOME
-
-  # cd up for every . past .
-  # author jengler (lagooned)
-  if [[ "$1" =~ ^\.\.+$ ]]; then
-    local a dir;
-    a=${#1};
-    while [ $a -ne 1 ]; do
-      dir=${dir}"../";
-      ((a--));
-    done;
-    the_new_dir=$dir
-  fi
-
-  if [[ ${the_new_dir:0:1} == '-' ]]; then
-    #
-    # Extract dir N from dirs
-    index=${the_new_dir:1}
-    [[ -z $index ]] && index=1
-    adir=$(dirs +$index)
-    [[ -z $adir ]] && return 1
-    the_new_dir=$adir
-  fi
-
-  #
-  # '~' has to be substituted by ${HOME}
-  [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
-
-  #
-  # Now change to the new dir and add to the top of the stack
-  pushd "${the_new_dir}" > /dev/null
-  [[ $? -ne 0 ]] && return 1
-  the_new_dir=$(pwd)
-
-  #
-  # Trim down everything beyond 11th entry
-  popd -n +11 2>/dev/null 1>/dev/null
-
-  #
-  # Remove any other occurence of this dir, skipping the top of the stack
-  for ((cnt=1; cnt <= 10; cnt++)); do
-    x2=$(dirs +${cnt} 2>/dev/null)
-    [[ $? -ne 0 ]] && return 0
-    [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
-    if [[ "${x2}" == "${the_new_dir}" ]]; then
-      popd -n +$cnt 2>/dev/null 1>/dev/null
-      cnt=cnt-1
+    local x2 the_new_dir adir index
+    local -i cnt
+  
+    if [[ $1 ==  "--" ]]; then
+      dirs -v
+      return 0
     fi
-  done
-
-  return 0
+  
+    the_new_dir=$1
+    [[ -z $1 ]] && the_new_dir=$HOME
+  
+    # cd up for every . past .
+    # author jengler (lagooned)
+    if [[ "$1" =~ ^\.\.+$ ]]; then
+      local a dir;
+      a=${#1};
+      while [ $a -ne 1 ]; do
+        dir=${dir}"../";
+        ((a--));
+      done;
+      the_new_dir=$dir
+    fi
+  
+    if [[ ${the_new_dir:0:1} == '-' ]]; then
+      #
+      # Extract dir N from dirs
+      index=${the_new_dir:1}
+      [[ -z $index ]] && index=1
+      adir=$(dirs +$index)
+      [[ -z $adir ]] && return 1
+      the_new_dir=$adir
+    fi
+  
+    #
+    # '~' has to be substituted by ${HOME}
+    [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+  
+    #
+    # Now change to the new dir and add to the top of the stack
+    pushd "${the_new_dir}" > /dev/null
+    [[ $? -ne 0 ]] && return 1
+    the_new_dir=$(pwd)
+  
+    #
+    # Trim down everything beyond 11th entry
+    popd -n +11 2>/dev/null 1>/dev/null
+  
+    #
+    # Remove any other occurence of this dir, skipping the top of the stack
+    for ((cnt=1; cnt <= 10; cnt++)); do
+      x2=$(dirs +${cnt} 2>/dev/null)
+      [[ $? -ne 0 ]] && return 0
+      [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
+      if [[ "${x2}" == "${the_new_dir}" ]]; then
+        popd -n +$cnt 2>/dev/null 1>/dev/null
+        cnt=cnt-1
+      fi
+    done
+  
+    return 0
 }
 
 alias cd=cd_func
-
-tmux() ( ORIG_PWD_FOR_TMUX="${PWD}" command tmux "$@"; )
-
-# start tmux on shell start if it is available
-if command -v tmux>/dev/null; then
-    [[ -z $TMUX ]] && tmux new-session && exit;
-fi
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -126,24 +141,31 @@ function parse_git_dirty {
     renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
     deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
     bits=''
+
     if [ "${renamed}" == "0" ]; then
         bits=">${bits}"
     fi
+
     if [ "${ahead}" == "0" ]; then
         bits="*${bits}"
     fi
+
     if [ "${newfile}" == "0" ]; then
         bits="+${bits}"
     fi
+
     if [ "${untracked}" == "0" ]; then
         bits="?${bits}"
     fi
+
     if [ "${deleted}" == "0" ]; then
         bits="x${bits}"
     fi
+
     if [ "${dirty}" == "0" ]; then
         bits="!${bits}"
     fi
+
     if [ ! "${bits}" == "" ]; then
         echo " ${bits}"
     else
@@ -164,3 +186,8 @@ invert_pdf() {
 highlight() {
     grep --color -E "$1|\$"
 }
+
+# load .bashrc_tmux if present
+if [ -f "$HOME/.bashrc_tmux" ] ; then
+    . "$HOME/.bashrc_tmux"
+fi

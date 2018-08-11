@@ -1,0 +1,16 @@
+# ~/.custom_profile
+
+# xmodmap
+if [ -f $HOME/.xmodmap ]; then
+    xmodmap $HOME/.xmodmap &>/dev/null
+fi
+
+# xcape
+if command -v xcape>/dev/null && ! pgrep -x "xcape">/dev/null; then
+    xcape -e 'Control_L=Escape;Hyper_L=Return'
+fi
+
+# nodenv
+if [ -d $HOME/.nodenv/bin ]; then
+    PATH="$HOME/.nodenv/bin:$PATH"
+fi
