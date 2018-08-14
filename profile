@@ -1,7 +1,7 @@
 # ~/.profile: executed by the command interpreter for login shells.
 
 # load custom profile
-if [ -f "$HOME/.profile_custom" ] ; then
+if [ -f "$HOME/.profile_custom" ]; then
     . "$HOME/.profile_custom"
 fi
 
@@ -14,7 +14,7 @@ fi
 if [ -n "$BASH_VERSION" ] ; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ] ; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
