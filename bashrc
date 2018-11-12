@@ -7,7 +7,7 @@
 [[ "$-" == *i* ]] && stty -ixon
 
 # don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth
 
 # append to the history file
 shopt -s histappend
