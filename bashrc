@@ -52,7 +52,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Make sure we start in home unless invoked by CHERE
+# make sure we start in home unless invoked by CHERE
 if [ ! -z "${CHERE_INVOKING}" ]; then
     unset CHERE_INVOKING
 fi
