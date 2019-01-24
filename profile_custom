@@ -1,5 +1,9 @@
 # ~/.custom_profile
 
+# editor
+export VISUAL=vi
+export EDITOR="$VISUAL"
+
 # xmodmap
 if [ -f $HOME/.xmodmap ]; then
     xmodmap $HOME/.xmodmap &>/dev/null
@@ -14,3 +18,4 @@ fi
 if [ -d $HOME/.nodenv/bin ]; then
     PATH="$HOME/.nodenv/bin:$PATH"
 fi
+
