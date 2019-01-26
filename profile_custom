@@ -4,6 +4,11 @@
 export VISUAL=vi
 export EDITOR="$VISUAL"
 
+# cargo bin
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 # xmodmap
 if [ -f $HOME/.xmodmap ]; then
     xmodmap $HOME/.xmodmap &>/dev/null
