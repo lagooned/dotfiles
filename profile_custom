@@ -24,3 +24,8 @@ if [ -d $HOME/.nodenv/bin ]; then
     PATH="$HOME/.nodenv/bin:$PATH"
 fi
 
+# composer bin
+if [ -d $HOME/.config/composer/vendor/bin ]; then
+    PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
+
