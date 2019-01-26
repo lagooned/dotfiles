@@ -19,7 +19,7 @@ if command -v xcape>/dev/null && ! pgrep -x "xcape">/dev/null; then
     xcape -e 'Control_L=Escape;Hyper_L=Return'
 fi
 
-# nodenv
+# nodenv bin
 if [ -d $HOME/.nodenv/bin ]; then
     PATH="$HOME/.nodenv/bin:$PATH"
 fi
