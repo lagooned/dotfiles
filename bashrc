@@ -39,7 +39,7 @@ if [ -f "$HOME/.bash_aliases" ]; then
 fi
 
 # bashrc_custom
-if [ -f "$HOME/.bashrc_custom" ] ; then
+if [ -f "$HOME/.bashrc_custom" ]; then
     . "$HOME/.bashrc_custom"
 fi
 

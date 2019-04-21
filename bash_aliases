@@ -188,6 +188,6 @@ highlight() {
 }
 
 # load .bashrc_tmux if present
-if [ -f "$HOME/.bashrc_tmux" ] ; then
+if [ -f "$HOME/.bashrc_tmux" ]; then
     . "$HOME/.bashrc_tmux"
 fi
