@@ -8,8 +8,11 @@ export PS1_BOTTOM="\n \[\e[32m\]\\$\[\e[m\] "
 alias df='df -h'
 alias du='du -h'
 
-# misc
+# less color support
 alias less='less -r'
+
+# added protection
+alias rm='rm -I --preserve-root'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -42,9 +45,6 @@ if [[ $(uname -s) == Darwin ]]; then
     alias lh='ls -lhG'
     alias llh='ls -lhG'
 fi
-
-# produce some dazzling colors on the terminal. you'll probably want to run `reset` afterward.
-alias dazzle='while :;do printf "\e[%d;%dH\e[48;5;%dm \e[0m" $(($RANDOM%$LINES)) $(($RANDOM%$COLUMNS)) $(($RANDOM%216 )); done;'
 
 # function cd_func
 #
