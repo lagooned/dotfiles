@@ -1,5 +1,9 @@
 # ~/.bash_aliases
 
+# nice prompt with time
+export PS1_TOP="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W"
+export PS1_BOTTOM="\n \[\e[32m\]\\$\[\e[m\] "
+
 # default to human readable figures
 alias df='df -h'
 alias du='du -h'
@@ -119,75 +123,27 @@ cd_func () {
 
 alias cd=cd_func
 
-# get current branch in git repo
-function parse_git_branch() {
-    BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-    if [ ! "${BRANCH}" == "" ]
-    then
-        STAT=`parse_git_dirty`
-        echo "[${BRANCH}${STAT}]"
-    else
-        echo ""
-    fi
-}
-
-# get current status of git repo
-function parse_git_dirty {
-    status=`git status 2>&1 | tee`
-    dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-    untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-    ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-    newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-    renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-    deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-    bits=''
-
-    if [ "${renamed}" == "0" ]; then
-        bits=">${bits}"
-    fi
-
-    if [ "${ahead}" == "0" ]; then
-        bits="*${bits}"
-    fi
-
-    if [ "${newfile}" == "0" ]; then
-        bits="+${bits}"
-    fi
-
-    if [ "${untracked}" == "0" ]; then
-        bits="?${bits}"
-    fi
-
-    if [ "${deleted}" == "0" ]; then
-        bits="x${bits}"
-    fi
-
-    if [ "${dirty}" == "0" ]; then
-        bits="!${bits}"
-    fi
-
-    if [ ! "${bits}" == "" ]; then
-        echo " ${bits}"
-    else
-        echo ""
-    fi
-}
-
-export PS1="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W\[\e[36m\]\`parse_git_branch\`\[\e[m\]\n \[\e[32m\]\\$\[\e[m\] "
-
 invert_pdf() {
     if [ -n "$1" ] || [ -n "$2" ]; then
-        gs -o "$2" -sDEVICE=pdfwrite -c "{1 exch sub}{1 exch sub}{1 exch sub}{1 exch sub} setcolortransfer" -f "$1"
+        ghostscript -o "$2" -sDEVICE=pdfwrite -c "{1 exch sub}{1 exch sub}{1 exch sub}{1 exch sub} setcolortransfer" -f "$1"
     else
         echo "Usage: invert_pdf input.pdf output.pdf"
     fi
 }
 
 highlight() {
-    grep --color -E "$1|\$"
+    grep --color=always -E "$1|\$"
 }
 
-# load .bashrc_tmux if present
+# load ~/.bashrc_tmux if present
 if [ -f "$HOME/.bashrc_tmux" ]; then
     . "$HOME/.bashrc_tmux"
 fi
+
+# load ~/.bash_git_prompt if present
+if [ -f "$HOME/.bash_git_prompt" ]; then
+    . "$HOME/.bash_git_prompt"
+fi
+
+# create prompt
+export PS1=$PS1_TOP$PS1_BOTTOM
