@@ -14,6 +14,18 @@ alias less='less -r'
 # added protection
 alias rm='rm -I --preserve-root'
 
+# nicer mkdir
+alias mkdir='mkdir -pv'
+
+# continue wget
+alias wget='wget -c'
+
+# misc
+alias h='history'
+alias j='jobs'
+alias b='bg'
+alias f='fg'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r "$HOME/.dircolors" && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
