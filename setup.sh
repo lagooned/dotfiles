@@ -1,8 +1,9 @@
 #!/bin/bash
 
 declare -a filenames=(
-    # "bash_aliases"
     # "bash_git_prompt"
+    # "bash_funcs"
+    # "bash_aliases"
     # "bashrc"
     # "bashrc_custom"
     # "bashrc_tmux"
