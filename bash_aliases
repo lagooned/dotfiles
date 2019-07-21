@@ -1,9 +1,5 @@
 # ~/.bash_aliases
 
-# nice prompt with time
-export PS1_TOP="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W"
-export PS1_BOTTOM="\n \[\e[32m\]\\$\[\e[m\] "
-
 # default to human readable figures
 alias df='df -h'
 alias du='du -h'
@@ -69,10 +65,7 @@ if [ -f "$HOME/.bashrc_tmux" ]; then
     . "$HOME/.bashrc_tmux"
 fi
 
-# load ~/.bash_git_prompt if present
-if [ -f "$HOME/.bash_git_prompt" ]; then
-    . "$HOME/.bash_git_prompt"
+# load ~/.bash_prompt if present and if not in emacs
+if [ -f "$HOME/.bash_prompt" ] && [ -z ${INSIDE_EMACS} ]; then
+    . "$HOME/.bash_prompt"
 fi
-
-# create prompt
-export PS1=$PS1_TOP$PS1_BOTTOM

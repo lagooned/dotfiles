@@ -53,16 +53,7 @@ $if Bash
   # a history expansion in the line
   Space: magic-space
 
-  # vi editing mode
-  set editing-mode vi
-  set keymap vi-command
-
   # matching paren
   # set blink-matching-paren on
-
-  # show vi mode in prompt
-  set show-mode-in-prompt on
-  set vi-ins-mode-string "+"
-  set vi-cmd-mode-string ":"
 
 $endif

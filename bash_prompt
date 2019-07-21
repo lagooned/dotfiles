@@ -1,0 +1,27 @@
+
+# ~/.bash_prompt
+
+# Filename completion/expansion
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+
+# vi editing mode
+bind 'set editing-mode vi'
+bind 'set keymap vi-command'
+
+# show vi mode in prompt
+bind 'set show-mode-in-prompt on'
+bind 'set vi-ins-mode-string "+"'
+bind 'set vi-cmd-mode-string ":"'
+
+# nice prompt with time
+export PS1_TOP="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W"
+export PS1_BOTTOM="\n \[\e[32m\]\\$\[\e[m\] "
+
+# load ~/.bash_git_prompt if present
+if [ -f "$HOME/.bash_git_prompt" ]; then
+    . "$HOME/.bash_git_prompt"
+fi
+
+# create prompt
+export PS1=$PS1_TOP$PS1_BOTTOM
