@@ -4,6 +4,6 @@
 * install
 - =git clone https://github.com/lagooned/dotfiles.git=
 * usage
-- =./setup.sh [file]=
+- =./setup.sh file=
 - to setup all files do
   - =./setup.sh *=
