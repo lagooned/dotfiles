@@ -1,0 +1,9 @@
+#+title: dotfiles
+#+author: jared engler
+
+* install
+- =git clone https://github.com/lagooned/dotfiles.git=
+* usage
+- =./setup.sh [file]=
+- to setup all files do
+  - =./setup.sh *=
