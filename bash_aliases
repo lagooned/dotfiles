@@ -4,9 +4,6 @@
 alias df='df -h'
 alias du='du -h'
 
-# less color support
-alias less='less -r'
-
 # added protection
 alias rm='rm -I --preserve-root'
 
