@@ -24,6 +24,16 @@ alias j='jobs'
 alias b='bg'
 alias f='fg'
 
+# git alias translations
+if command -v git>/dev/null; then
+    git_aliases=$(git config --get-regexp '^alias\.' \
+        | cut -f 1 -d ' ' \
+        | cut -f 2 -d '.');
+    for a in $git_aliases; do
+        alias g$a="git $a"
+    done
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r "$HOME/.dircolors" && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
