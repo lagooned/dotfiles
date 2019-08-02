@@ -1,7 +1,4 @@
-# ~/.bashrc
-
-# If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+# ~/.bashrc  -*- mode: Sh; -*-
 
 # disable xon/xoff
 [[ "$-" == *i* ]] && stty -ixon
