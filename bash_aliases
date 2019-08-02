@@ -1,4 +1,9 @@
 # ~/.bash_aliases
+# load ~/.bash_funcs if present
+if [ -f "$HOME/.bash_funcs" ]; then
+    . "$HOME/.bash_funcs"
+    alias cd=cd_func
+fi
 
 # default to human readable figures
 alias df='df -h'
@@ -49,12 +54,6 @@ if [[ $(uname -s) == Darwin ]]; then
     alias lls='ls -lhSrG'
     alias lh='ls -lhG'
     alias llh='ls -lhG'
-fi
-
-# load ~/.bash_funcs if present
-if [ -f "$HOME/.bash_funcs" ]; then
-    . "$HOME/.bash_funcs"
-    alias cd=cd_func
 fi
 
 # load ~/.bashrc_tmux if present
