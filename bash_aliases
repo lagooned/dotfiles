@@ -27,9 +27,10 @@ alias f='fg'
 
 # git alias translations
 if command -v git>/dev/null; then
+    alias g='git'
     git_aliases=$(git config --get-regexp '^alias\.' \
         | cut -f 1 -d ' ' \
-        | cut -f 2 -d '.');
+        | cut -f 2 -d '.')
     for a in $git_aliases; do
         alias g$a="git $a"
     done
