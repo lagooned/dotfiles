@@ -1,4 +1,5 @@
-# ~/.bash_aliases
+# ~/.bash_aliases  -*- mode: Sh; -*-
+
 # load ~/.bash_funcs if present
 if [ -f "$HOME/.bash_funcs" ]; then
     . "$HOME/.bash_funcs"
