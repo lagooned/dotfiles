@@ -1,5 +1,5 @@
 
-# load tmux on bash init
+# load tmux on bash init  -*- mode: Sh; -*-
 
 tmux() ( ORIG_PWD_FOR_TMUX="${PWD}" command tmux "$@"; )
 

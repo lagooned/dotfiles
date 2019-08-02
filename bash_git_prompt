@@ -1,5 +1,5 @@
 
-# ~/.bash_git_prompt
+# ~/.bash_git_prompt  -*- mode: Sh; -*-
 
 # get current branch in git repo
 function parse_git_branch() {

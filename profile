@@ -1,4 +1,5 @@
-# ~/.profile: executed by the command interpreter for login shells.
+
+# ~/.profile  -*- mode: Sh; -*-
 
 # load custom profile
 if [ -f "$HOME/.profile_custom" ]; then

@@ -1,5 +1,5 @@
 
-# ~/.bash_prompt
+# ~/.bash_prompt  -*- mode: Sh; -*-
 
 # Filename completion/expansion
 bind 'set completion-ignore-case on'

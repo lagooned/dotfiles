@@ -1,4 +1,5 @@
-# ~/.custom_profile_osx
+
+# ~/.custom_profile_osx  -*- mode: Sh; -*-
 
 # load nvm
 if [ -d $HOME/.nvm ]; then

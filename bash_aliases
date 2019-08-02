@@ -1,3 +1,4 @@
+
 # ~/.bash_aliases  -*- mode: Sh; -*-
 
 # load ~/.bash_funcs if present

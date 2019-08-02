@@ -1,5 +1,5 @@
 
-# ~/.bashrc_custom
+# ~/.bashrc_custom  -*- mode: Sh; -*-
 
 # exercism completion
 if [ -f ~/.config/exercism/exercism_completion.bash ]; then
