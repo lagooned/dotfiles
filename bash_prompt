@@ -1,18 +1,20 @@
 
 # ~/.bash_prompt  -*- mode: Sh; -*-
 
-# Filename completion/expansion
-bind 'set completion-ignore-case on'
-bind 'set show-all-if-ambiguous on'
+if [[ ! "$-" != *i* ]]; then
+    # Filename completion/expansion
+    bind 'set completion-ignore-case on'
+    bind 'set show-all-if-ambiguous on'
 
-# vi editing mode
-bind 'set editing-mode vi'
-bind 'set keymap vi-command'
+    # vi editing mode
+    bind 'set editing-mode vi'
+    bind 'set keymap vi-command'
 
-# show vi mode in prompt
-bind 'set show-mode-in-prompt on'
-bind 'set vi-ins-mode-string "+"'
-bind 'set vi-cmd-mode-string ":"'
+    # show vi mode in prompt
+    bind 'set show-mode-in-prompt on'
+    bind 'set vi-ins-mode-string "+"'
+    bind 'set vi-cmd-mode-string ":"'
+fi
 
 # nice prompt with time
 export PS1_TOP="[\[\e[32m\]\t\[\e[m\]] \[\e[31m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \W"
