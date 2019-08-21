@@ -75,6 +75,6 @@ if [ -f "$HOME/.bashrc_tmux" ]; then
 fi
 
 # load ~/.bash_prompt if present and if not in emacs
-if [ -f "$HOME/.bash_prompt" ] && [ -z ${INSIDE_EMACS} ]; then
+if [ -f "$HOME/.bash_prompt" ]; then
     . "$HOME/.bash_prompt"
 fi
