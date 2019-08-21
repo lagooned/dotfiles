@@ -55,4 +55,4 @@ function parse_git_dirty {
     fi
 }
 
-export PS1_TOP=$PS1_TOP"\[\e[36m\]\`parse_git_branch\`\[\e[m\]"
+PS1_TOP=$PS1_TOP"\[\e[36m\]\`parse_git_branch\`\[\e[m\]"
