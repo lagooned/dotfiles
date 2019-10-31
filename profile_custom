@@ -1,5 +1,5 @@
 
-# ~/.custom_profile  -*- mode: Sh; -*-
+# ~/.profile_custom  -*- mode: Sh; -*-
 
 # editor
 export VISUAL=vi
