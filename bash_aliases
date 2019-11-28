@@ -14,6 +14,10 @@ alias du='du -h'
 # added protection
 alias rm='rm -I --preserve-root'
 
+if [[ $(uname -s) == Darwin ]]; then
+    alias rm='rm'
+fi
+
 # nicer mkdir
 alias mkdir='mkdir -pv'
 
