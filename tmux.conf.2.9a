@@ -1,0 +1,56 @@
+# ~/.tmux.conf
+
+# start tmux in pwd
+set-option -g default-command "[ -z \"\${ORIG_PWD_FOR_TMUX+set}\" ] || { cd \"\${ORIG_PWD_FOR_TMUX}\"; unset ORIG_PWD_FOR_TMUX; }; exec ${SHELL}"
+set-option -g -a update-environment "ORIG_PWD_FOR_TMUX"
+
+# default-terminal
+set -g default-terminal "screen-256color"
+
+# vim performance
+set -sg escape-time 1
+
+# vi mode
+set -g mode-keys vi
+set -g status-keys vi
+set-option -g prefix 'C-\'
+bind-key 'C-\' send-prefix
+
+# split panes
+bind \ split-window -h
+bind - split-window -v
+
+# move around with vi keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# resize
+set -g repeat-time 1000
+bind-key -r J resize-pane -D 5
+bind-key -r K resize-pane -U 5
+bind-key -r H resize-pane -L 5
+bind-key -r L resize-pane -R 5
+
+# choose session
+bind s choose-session
+
+# kill current session and choose
+bind-key X run-shell "tmux switch-client -n \\; kill-session -t \"$(tmux display-message -p \"#S\")\"" \; choose-session
+
+# synchronize panes
+bind-key = set synchronize-panes
+
+# reload config file
+bind r source-file ~/.tmux.conf
+
+# panes
+set -g pane-border-style fg=green,bg=black
+set -g pane-active-border-style fg=green
+
+# status bar
+set -g status-justify left
+set -g status-style bg=black,fg=green
+set -g status-interval 5
+set -g status-position top
