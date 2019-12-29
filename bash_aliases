@@ -73,12 +73,12 @@ if [[ $(uname -s) == Darwin ]]; then
     alias llh='ls -lhG'
 fi
 
-# load ~/.bashrc_tmux if present
-if [ -f "$HOME/.bashrc_tmux" ]; then
+# load ~/.bashrc_tmux if present and if not in emacs
+if [ -f "$HOME/.bashrc_tmux" ] && [ -z ${INSIDE_EMACS} ]; then
     . "$HOME/.bashrc_tmux"
 fi
 
-# load ~/.bash_prompt if present and if not in emacs
+# load ~/.bash_prompt if present
 if [ -f "$HOME/.bash_prompt" ]; then
     . "$HOME/.bash_prompt"
 fi
