@@ -88,3 +88,8 @@ alias ssh='ssh -o SendEnv="INSIDE_EMACS"'
 
 # always put tmux in unicode mode
 alias tmux='tmux -u'
+
+# run custom aliases
+if [ -f "$HOME/.bash_custom_aliases" ]; then
+    . "$HOME/.bash_custom_aliases"
+fi
