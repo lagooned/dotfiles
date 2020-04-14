@@ -43,11 +43,18 @@ fi
 
 # enable programmable completion features
 if ! shopt -oq posix; then
+
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+
+  # osx completion via homebrew
+  if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
+    . /usr/local/etc/profile.d/bash_completion.sh
+  fi
+
 fi
 
 # make sure we start in home unless invoked by CHERE
