@@ -93,3 +93,9 @@ alias tmux='tmux -u'
 if [ -f "$HOME/.bash_custom_aliases" ]; then
     . "$HOME/.bash_custom_aliases"
 fi
+
+# open pls
+if command -v xdg-open>/dev/null; then
+    alias o='xdg-open'
+    alias open='xdg-open'
+fi
