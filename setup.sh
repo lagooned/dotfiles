@@ -13,7 +13,7 @@ else
                 if [ -L ~/.$file ]; then
                     rm ~/.$file
                 else
-                    mv ~/.$file ~/.bak
+                    mv --backup=numbered ~/.$file ~/.$file.bak
                 fi
             fi
             ln -s $(dirname $(readlink -f $0))/$file ~/.$file;
