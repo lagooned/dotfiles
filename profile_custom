@@ -33,7 +33,12 @@ if [ -d $HOME/.config/composer/vendor/bin ]; then
     PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
-# mvn
+# local mvn
 if [ -d $HOME/maven/current ]; then
     PATH="$HOME/maven/current/bin:$PATH"
+fi
+
+# system mvn
+if [ -d /opt/maven/current ]; then
+    PATH="/opt/maven/current/bin:$PATH"
 fi
