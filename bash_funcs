@@ -87,3 +87,7 @@ invert_pdf() {
 highlight() {
     grep --color=always -E "$1|\$"
 }
+
+watch_stream() {
+    nohup streamlink $1 $2 --player="mpv --fullscreen" 1>&2>watch_stream.out.$(date +%s) &
+}
