@@ -5,8 +5,8 @@
 export VISUAL=vi
 export EDITOR="$VISUAL"
 
-# less color
-export LESS="-R"
+# less opts
+export LESS="-R -f -F -X $LESS"
 
 # cargo bin
 if [ -d "$HOME/.cargo/bin" ] ; then

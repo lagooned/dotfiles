@@ -1,0 +1,38 @@
+[user]
+  name = lagooned
+  email = jared.lite@gmail.com
+[core]
+  editor = vi
+[alias]
+  a = add
+  aa = add --all
+  ap = add -p
+  c = commit
+  ca = commit --amend
+  cara = commit --amend --reset-author
+  cfdx = clean -fdx
+  cm = commit -m
+  co = checkout
+  cop = checkout -p
+  cv = commit -v
+  d = diff
+  dc = diff --cached
+  dh1 = diff HEAD~1
+  dh2 = diff HEAD~2
+  dr = diff -R
+  f = fetch
+  fo = fetch origin
+  fu = fetch upstream
+  g = grep -Ii
+  p = push origin HEAD
+  pf = push origin HEAD -f
+  pfu = push upstream HEAD -f
+  pu = push upstream HEAD
+  r = reset
+  rb = rebase
+  rbi = rebase -i
+  rbir = rebase -i --root
+  re = remote
+  rev = remote -v
+  rp = reset -p
+  s = status

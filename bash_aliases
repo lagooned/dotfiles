@@ -83,9 +83,6 @@ if [ -f "$HOME/.bash_prompt" ]; then
     . "$HOME/.bash_prompt"
 fi
 
-# send INSIDE_EMACS with every ssh
-alias ssh='ssh -o SendEnv="INSIDE_EMACS"'
-
 # always put tmux in unicode mode
 alias tmux='tmux -u'
 
